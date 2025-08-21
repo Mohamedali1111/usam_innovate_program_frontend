@@ -5,6 +5,7 @@ const Profile = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showFullBio, setShowFullBio] = useState(false);
   const [greeting, setGreeting] = useState('');
+  const [activeSection, setActiveSection] = useState('home');
 
   // Time-based greeting
   useEffect(() => {
@@ -27,12 +28,53 @@ const Profile = () => {
     setShowFullBio(!showFullBio);
   };
 
+  // Smooth scroll to section
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
+  };
+
   return (
     <div className={`profile-container ${isDarkMode ? 'dark-mode' : ''}`}>
       {/* Navigation */}
       <nav className="navigation">
         <div className="nav-content">
-          <h2 className="nav-logo">Portfolio</h2>
+          <h2 className="nav-logo">Mohamed Ali</h2>
+          <div className="nav-links">
+            <button 
+              className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
+              onClick={() => scrollToSection('home')}
+            >
+              Home
+            </button>
+            <button 
+              className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
+              onClick={() => scrollToSection('about')}
+            >
+              About
+            </button>
+            <button 
+              className={`nav-link ${activeSection === 'skills' ? 'active' : ''}`}
+              onClick={() => scrollToSection('skills')}
+            >
+              Skills
+            </button>
+            <button 
+              className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
+              onClick={() => scrollToSection('projects')}
+            >
+              Projects
+            </button>
+            <button 
+              className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+              onClick={() => scrollToSection('contact')}
+            >
+              Contact
+            </button>
+          </div>
           <button 
             className="theme-toggle"
             onClick={toggleDarkMode}
@@ -44,42 +86,56 @@ const Profile = () => {
       </nav>
 
       {/* Header Section */}
-      <header className="header">
+      <header className="header" id="home">
         <div className="header-content">
           <div className="profile-image">
-            <div className="avatar">👨‍💻</div>
+            <div className="avatar">🚀</div>
           </div>
           <div className="header-text">
-            <h1 className="name">John Doe</h1>
-            <p className="profession">Full Stack Developer</p>
-            <p className="tagline">Crafting digital experiences with passion and precision</p>
+            <h1 className="name">Mohamed Ali</h1>
+            <p className="profession">Full Stack Developer & Blockchain Enthusiast</p>
+            <p className="tagline">Turning complex technical concepts into intuitive, scalable products</p>
             <p className="greeting">{greeting} Welcome to my portfolio!</p>
+            <div className="header-badges">
+              <span className="badge">Computer Science Graduate</span>
+              <span className="badge">React/Node.js Developer</span>
+              <span className="badge">Web3 Enthusiast</span>
+            </div>
           </div>
         </div>
       </header>
 
       {/* About Section */}
-      <section className="about-section">
+      <section className="about-section" id="about">
         <div className="container">
           <h2 className="section-title">About Me</h2>
           <div className="about-content">
             <p className="bio-text">
-              I'm a passionate Full Stack Developer with 3+ years of experience building 
-              modern web applications. I specialize in React, Node.js, and cloud technologies.
+              I'm a Computer Science graduate (2025) from Misr International University, passionate about 
+              software engineering, UI/UX, and blockchain development. With a strong foundation in 
+              full-stack development, cybersecurity, and scalable application design, I combine technical 
+              depth with creativity to build secure and user-friendly systems.
             </p>
             {showFullBio && (
               <div className="full-bio">
                 <p>
-                  My journey in software development began with a curiosity about how things work 
-                  on the web. Today, I create scalable solutions that solve real-world problems. 
-                  I believe in writing clean, maintainable code and staying up-to-date with the 
-                  latest industry trends and best practices.
+                  I have hands-on experience in frontend and backend development, internship training in IT operations, 
+                  and exposure to real-world challenges through freelance projects, hackathons, and startup initiatives. 
+                  My goal is to grow as a software engineer while building impactful solutions through innovation, 
+                  collaboration, and continuous learning.
                 </p>
-                <p>
-                  When I'm not coding, you can find me contributing to open-source projects, 
-                  mentoring junior developers, or exploring new technologies. I'm always eager 
-                  to learn and take on new challenges that push my boundaries.
-                </p>
+                <div className="education-experience">
+                  <h4>🎓 Education</h4>
+                  <p>B.Sc. in Computer Science & Information Systems – Misr International University (2021–2025)</p>
+                  
+                  <h4>💼 Professional Experience</h4>
+                  <ul>
+                    <li><strong>Software Intern</strong> – Circle Advertising (Sep 2024 – Oct 2024)</li>
+                    <li><strong>IT Intern</strong> – CIB Egypt (Jul 2024 – Aug 2024)</li>
+                    <li><strong>MINT Ambassador</strong> (2024 – Present)</li>
+                    <li><strong>Freelance Developer</strong> – Seductive Pharaohs (2025)</li>
+                  </ul>
+                </div>
               </div>
             )}
             <button className="bio-toggle" onClick={toggleBio}>
@@ -90,84 +146,122 @@ const Profile = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="skills-section">
+      <section className="skills-section" id="skills">
         <div className="container">
           <h2 className="section-title">Skills</h2>
           <div className="skills-grid">
             <div className="skill-category">
-              <h3>Frontend</h3>
+              <h3>Programming Languages</h3>
               <ul className="skills-list">
-                <li>React.js</li>
-                <li>JavaScript (ES6+)</li>
-                <li>HTML5 & CSS3</li>
-                <li>TypeScript</li>
-                <li>Redux</li>
+                <li>C++</li>
+                <li>C#</li>
+                <li>Java</li>
+                <li>PHP</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>Dart</li>
               </ul>
             </div>
             <div className="skill-category">
-              <h3>Backend</h3>
+              <h3>Frontend & UI/UX</h3>
+              <ul className="skills-list">
+                <li>React.js</li>
+                <li>Angular</li>
+                <li>HTML5 & CSS3</li>
+                <li>Bootstrap</li>
+                <li>Framer</li>
+                <li>Figma</li>
+              </ul>
+            </div>
+            <div className="skill-category">
+              <h3>Backend & Databases</h3>
               <ul className="skills-list">
                 <li>Node.js</li>
                 <li>Express.js</li>
-                <li>Python</li>
+                <li>Spring Boot</li>
                 <li>MongoDB</li>
-                <li>PostgreSQL</li>
+                <li>MySQL</li>
+                <li>Firebase</li>
               </ul>
             </div>
             <div className="skill-category">
-              <h3>Tools & Others</h3>
+              <h3>Mobile & Tools</h3>
               <ul className="skills-list">
-                <li>Git & GitHub</li>
-                <li>Docker</li>
-                <li>AWS</li>
-                <li>REST APIs</li>
-                <li>Agile/Scrum</li>
-              </ul>
-            </div>
-            <div className="skill-category">
-              <h3>Soft Skills</h3>
-              <ul className="skills-list">
-                <li>Problem Solving</li>
-                <li>Team Collaboration</li>
-                <li>Communication</li>
-                <li>Time Management</li>
-                <li>Adaptability</li>
+                <li>Flutter</li>
+                <li>GitHub</li>
+                <li>Jira</li>
+                <li>Postman</li>
+                <li>Visual Studio</li>
+                <li>VS Code</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Projects Section (Optional) */}
-      <section className="projects-section">
+      {/* Projects Section */}
+      <section className="projects-section" id="projects">
         <div className="container">
           <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid">
-            <div className="project-card">
-              <h3>E-Commerce Platform</h3>
-              <p>A full-stack e-commerce solution built with React, Node.js, and MongoDB.</p>
+            <div className="project-card featured">
+              <div className="project-badge">🏆 2nd Place ICP Hackathon</div>
+              <h3>CargoTrace Finance</h3>
+              <p>A DeFi solution connecting Ethereum & ICP to tokenize trade documents and trigger financing. Built for ICP Hackathon 2025.</p>
               <div className="project-tech">
                 <span>React</span>
+                <span>Ethereum</span>
+                <span>ICP</span>
+                <span>DeFi</span>
+              </div>
+            </div>
+            <div className="project-card">
+              <h3>Cybersecurity Awareness Training Platform</h3>
+              <p>Graduation project featuring simulated real-world attacks, authentication, role-based access control, and progress tracking.</p>
+              <div className="project-tech">
                 <span>Node.js</span>
                 <span>MongoDB</span>
-              </div>
-            </div>
-            <div className="project-card">
-              <h3>Task Management App</h3>
-              <p>A collaborative task management application with real-time updates.</p>
-              <div className="project-tech">
                 <span>React</span>
-                <span>Socket.io</span>
-                <span>Express</span>
+                <span>Express.js</span>
               </div>
             </div>
             <div className="project-card">
-              <h3>Weather Dashboard</h3>
-              <p>A responsive weather application with location-based forecasts.</p>
+              <h3>Volunteens Web & Mobile App</h3>
+              <p>Recruitment and event management platform for volunteers with real-time event coordination and role-based access.</p>
               <div className="project-tech">
+                <span>Spring Boot</span>
+                <span>MySQL</span>
+                <span>Flutter</span>
+                <span>Firebase</span>
+              </div>
+            </div>
+            <div className="project-card">
+              <h3>Aussie Food Restaurant Web App</h3>
+              <p>Online food ordering and reservation system with payment gateway integration.</p>
+              <div className="project-tech">
+                <span>Node.js</span>
+                <span>Express.js</span>
+                <span>MongoDB</span>
+                <span>Payment API</span>
+              </div>
+            </div>
+            <div className="project-card">
+              <h3>Linkopharm Web App</h3>
+              <p>Pharmaceutical inventory and sales management system with admin dashboards.</p>
+              <div className="project-tech">
+                <span>PHP</span>
+                <span>MySQL</span>
+                <span>Bootstrap</span>
                 <span>JavaScript</span>
-                <span>Weather API</span>
-                <span>CSS Grid</span>
+              </div>
+            </div>
+            <div className="project-card">
+              <h3>Seductive Pharaohs Landing Page</h3>
+              <p>Premium landing page designed and built using Framer for a modeling agency with focus on UI/UX.</p>
+              <div className="project-tech">
+                <span>Framer</span>
+                <span>UI/UX</span>
+                <span>Landing Page</span>
               </div>
             </div>
           </div>
@@ -175,25 +269,25 @@ const Profile = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="contact-section">
+      <section className="contact-section" id="contact">
         <div className="container">
           <h2 className="section-title">Get In Touch</h2>
           <div className="contact-content">
             <p className="contact-intro">
               I'm always interested in new opportunities and exciting projects. 
-              Feel free to reach out!
+              Feel free to reach out for collaborations, job opportunities, or just to say hello!
             </p>
             <div className="contact-links">
               <a 
-                href="mailto:john.doe@example.com" 
+                href="mailto:mohamed.ali@example.com" 
                 className="contact-link email"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                📧 john.doe@example.com
+                📧 mohamed.ali@example.com
               </a>
               <a 
-                href="https://linkedin.com/in/johndoe" 
+                href="https://linkedin.com/in/mohamed-ali-dev" 
                 className="contact-link linkedin"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -201,7 +295,7 @@ const Profile = () => {
                 💼 LinkedIn Profile
               </a>
               <a 
-                href="https://github.com/johndoe" 
+                href="https://github.com/mohamed-ali-dev" 
                 className="contact-link github"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -217,7 +311,7 @@ const Profile = () => {
       <footer className="footer">
         <div className="container">
           <p className="copyright">
-            © 2024 John Doe. All rights reserved. Built with ❤️ and React.
+            © 2025 Mohamed Ali. All rights reserved.
           </p>
         </div>
       </footer>
