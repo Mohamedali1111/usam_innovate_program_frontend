@@ -1,90 +1,120 @@
-/* CSS Variables for easy theme switching */
+/* ===== CSS VARIABLES & THEME SYSTEM ===== */
+/* Light theme color palette and design tokens */
 :root {
-  --primary-color: #1e40af;
-  --secondary-color: #3b82f6;
-  --accent-color: #60a5fa;
-  --highlight-blue: #0ea5e9;
-  --success-green: #059669;
+  /* Primary color scheme - Professional blue tones */
+  --primary-color: #1e40af;      /* Deep blue for primary elements */
+  --secondary-color: #3b82f6;    /* Medium blue for secondary elements */
+  --accent-color: #60a5fa;       /* Light blue for accents */
+  --highlight-blue: #0ea5e9;     /* Bright blue for highlights */
+  --success-green: #059669;      /* Green for success/tech elements */
+  
+  /* Gradient definitions for visual appeal */
   --gradient-primary: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
   --gradient-secondary: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
   --gradient-tech: linear-gradient(135deg, #059669 0%, #10b981 100%);
   --gradient-highlight: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #1e40af 100%);
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --border-color: #e2e8f0;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Typography colors */
+  --text-primary: #1e293b;       /* Main text color */
+  --text-secondary: #475569;     /* Secondary text color */
+  
+  /* Background colors */
+  --bg-primary: #ffffff;         /* Main background */
+  --bg-secondary: #f8fafc;       /* Secondary background */
+  --bg-tertiary: #f1f5f9;        /* Tertiary background */
+  
+  /* Border and shadow system */
+  --border-color: #e2e8f0;       /* Border color */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);           /* Small shadow */
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);      /* Large shadow */
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);    /* Extra large shadow */
+  
+  /* Animation and transition settings */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);   /* Smooth transitions */
+  
+  /* Code block styling */
   --code-bg: #1e293b;
   --code-text: #e2e8f0;
 }
 
-/* Dark mode variables */
+/* Dark theme color palette - Overrides light theme variables */
 .dark-mode {
-  --primary-color: #60a5fa;
-  --secondary-color: #3b82f6;
-  --accent-color: #93c5fd;
-  --highlight-blue: #38bdf8;
-  --success-green: #34d399;
+  /* Primary color scheme - Lighter blues for dark mode */
+  --primary-color: #60a5fa;      /* Light blue for primary elements */
+  --secondary-color: #3b82f6;    /* Medium blue for secondary elements */
+  --accent-color: #93c5fd;       /* Very light blue for accents */
+  --highlight-blue: #38bdf8;     /* Bright blue for highlights */
+  --success-green: #34d399;      /* Light green for success/tech elements */
+  
+  /* Gradient definitions - Adjusted for dark mode */
   --gradient-primary: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1e40af 100%);
   --gradient-secondary: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
   --gradient-tech: linear-gradient(135deg, #34d399 0%, #10b981 100%);
   --gradient-highlight: linear-gradient(135deg, #38bdf8 0%, #3b82f6 50%, #1e40af 100%);
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
-  --border-color: #475569;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+  
+  /* Typography colors - Light text on dark backgrounds */
+  --text-primary: #f8fafc;       /* Light text for dark backgrounds */
+  --text-secondary: #cbd5e1;     /* Secondary light text */
+  
+  /* Background colors - Dark theme backgrounds */
+  --bg-primary: #0f172a;         /* Dark main background */
+  --bg-secondary: #1e293b;       /* Dark secondary background */
+  --bg-tertiary: #334155;        /* Dark tertiary background */
+  
+  /* Border and shadow system - Enhanced for dark mode */
+  --border-color: #475569;       /* Darker border color */
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);           /* Enhanced shadow */
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);      /* Enhanced large shadow */
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.4);     /* Enhanced extra large shadow */
+  
+  /* Code block styling - Maintained for dark mode */
   --code-bg: #1e293b;
   --code-text: #e2e8f0;
 }
 
-/* Global styles */
+/* ===== GLOBAL STYLES & RESET ===== */
+/* CSS reset and base styles */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
+/* Base body styles with modern typography */
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  line-height: 1.6;
+  line-height: 1.6; /* Improved readability */
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  transition: var(--transition);
+  transition: var(--transition); /* Smooth theme transitions */
 }
 
+/* Main container for the entire profile page */
 .profile-container {
-  min-height: 100vh;
+  min-height: 100vh; /* Full viewport height */
   background-color: var(--bg-primary);
 }
 
-/* Container utility */
+/* ===== LAYOUT UTILITIES ===== */
+/* Responsive container for consistent content width */
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  max-width: 1200px; /* Maximum content width */
+  margin: 0 auto; /* Center content horizontally */
+  padding: 0 2rem; /* Horizontal padding for mobile responsiveness */
 }
 
-/* Navigation */
+/* ===== NAVIGATION BAR ===== */
+/* Fixed navigation bar with glass morphism effect */
 .navigation {
-  position: fixed;
+  position: fixed; /* Stay at top of viewport */
   top: 0;
   left: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(255, 255, 255, 0.95); /* Semi-transparent background */
   border-bottom: 1px solid var(--border-color);
-  z-index: 1000;
-  backdrop-filter: blur(20px);
-  box-shadow: var(--shadow);
+  z-index: 1000; /* Ensure navigation stays above other content */
+  backdrop-filter: blur(20px); /* Glass morphism blur effect */
+  box-shadow: var(--shadow); /* Subtle shadow for depth */
 }
 
 .dark-mode .navigation {
@@ -173,12 +203,13 @@ body {
   box-shadow: var(--shadow-lg);
 }
 
-/* Header Section */
+/* ===== HERO HEADER SECTION ===== */
+/* Main hero section with gradient background and visual effects */
 .header {
-  padding: 8rem 2rem 4rem;
+  padding: 8rem 2rem 4rem; /* Generous padding for visual impact */
   background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--highlight-blue) 100%);
-  position: relative;
-  overflow: hidden;
+  position: relative; /* For positioning pseudo-elements */
+  overflow: hidden; /* Hide overflow from background effects */
 }
 
 .header::before {
@@ -297,20 +328,24 @@ body {
   min-height: 1.5em;
 }
 
+/* ===== TYPING ANIMATION EFFECTS ===== */
+/* Typewriter effect for tagline text */
 .typing-effect {
-  display: inline-block;
+  display: inline-block; /* Maintain inline flow */
 }
 
+/* Blinking cursor animation */
 .cursor {
   display: inline-block;
-  animation: blink 1s infinite;
-  color: var(--highlight-blue);
+  animation: blink 1s infinite; /* Continuous blinking animation */
+  color: var(--highlight-blue); /* Highlight color for cursor */
   font-weight: bold;
 }
 
+/* Cursor blink keyframes */
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+  0%, 50% { opacity: 1; }   /* Visible for first half */
+  51%, 100% { opacity: 0; } /* Hidden for second half */
 }
 
 .greeting {
@@ -870,10 +905,12 @@ section {
   }
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE DESIGN ===== */
+/* Tablet and mobile breakpoint styles */
 @media (max-width: 768px) {
+  /* Adjust container padding for smaller screens */
   .container {
-    padding: 0 1rem;
+    padding: 0 1rem; /* Reduced padding for mobile */
   }
   
   .nav-content {

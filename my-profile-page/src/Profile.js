@@ -1,14 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import './Profile.css';
 
+/**
+ * Profile Component - Main portfolio page component
+ * Features: Dark mode toggle, interactive navigation, typing animation, and responsive design
+ */
 const Profile = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [showFullBio, setShowFullBio] = useState(false);
-  const [greeting, setGreeting] = useState('');
-  const [activeSection, setActiveSection] = useState('home');
-  const [typedText, setTypedText] = useState('');
+  // ===== STATE MANAGEMENT =====
+  const [isDarkMode, setIsDarkMode] = useState(false); // Toggle between dark and light themes
+  const [showFullBio, setShowFullBio] = useState(false); // Control expanded bio visibility
+  const [greeting, setGreeting] = useState(''); // Dynamic greeting based on current time
+  const [activeSection, setActiveSection] = useState('home'); // Track active navigation section
+  const [typedText, setTypedText] = useState(''); // Text for typing animation effect
 
-  // Time-based greeting
+  // ===== USE EFFECT HOOKS =====
+  
+  /**
+   * Time-based greeting effect
+   * Updates greeting message based on current hour of the day
+   */
   useEffect(() => {
     const getGreeting = () => {
       const hour = new Date().getHours();
@@ -17,9 +27,12 @@ const Profile = () => {
       return 'Good Evening!';
     };
     setGreeting(getGreeting());
-  }, []);
+  }, []); // Empty dependency array - runs only once on component mount
 
-  // Typing animation for tagline
+  /**
+   * Typing animation effect for tagline
+   * Creates a typewriter effect by gradually revealing text characters
+   */
   useEffect(() => {
     const text = "Turning complex technical concepts into intuitive, scalable products";
     let index = 0;
@@ -29,38 +42,55 @@ const Profile = () => {
         setTypedText(text.slice(0, index));
         index++;
       } else {
-        clearInterval(timer);
+        clearInterval(timer); // Stop animation when complete
       }
-    }, 50);
+    }, 50); // Speed of typing animation (50ms per character)
 
+    // Cleanup function to prevent memory leaks
     return () => clearInterval(timer);
-  }, []);
+  }, []); // Empty dependency array - runs only once on component mount
 
-  // Toggle dark mode
+  // ===== EVENT HANDLERS =====
+  
+  /**
+   * Toggle dark/light mode theme
+   * Updates the isDarkMode state and applies corresponding CSS classes
+   */
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
 
-  // Toggle bio visibility
+  /**
+   * Toggle bio section visibility
+   * Shows/hides the expanded bio content with education and experience details
+   */
   const toggleBio = () => {
     setShowFullBio(!showFullBio);
   };
 
-  // Smooth scroll to section
+  /**
+   * Smooth scroll to section
+   * Handles navigation clicks and smoothly scrolls to target section
+   * @param {string} sectionId - The ID of the section to scroll to
+   */
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
+      element.scrollIntoView({ behavior: 'smooth' }); // Smooth scrolling behavior
+      setActiveSection(sectionId); // Update active navigation state
     }
   };
 
+  // ===== COMPONENT RENDER =====
   return (
     <div className={`profile-container ${isDarkMode ? 'dark-mode' : ''}`}>
-      {/* Navigation */}
+      {/* ===== NAVIGATION BAR ===== */}
       <nav className="navigation">
         <div className="nav-content">
+          {/* Logo/Brand Name */}
           <h2 className="nav-logo">Mohamed Ali</h2>
+          
+          {/* Navigation Links */}
           <div className="nav-links">
             <button 
               className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
@@ -93,6 +123,8 @@ const Profile = () => {
               Contact
             </button>
           </div>
+          
+          {/* Theme Toggle Button */}
           <button 
             className="theme-toggle"
             onClick={toggleDarkMode}
@@ -103,23 +135,34 @@ const Profile = () => {
         </div>
       </nav>
 
-      {/* Header Section */}
+      {/* ===== HERO HEADER SECTION ===== */}
       <header className="header" id="home">
         <div className="header-content">
+          {/* Profile Avatar */}
           <div className="profile-image">
             <div className="avatar">🚀</div>
           </div>
+          
+          {/* Header Text Content */}
           <div className="header-text">
             <h1 className="name">Mohamed Ali</h1>
             <p className="profession">Full Stack Developer & Blockchain Enthusiast</p>
+            
+            {/* Typing Animation Tagline */}
             <p className="tagline typing-effect">{typedText}<span className="cursor">|</span></p>
+            
+            {/* Dynamic Greeting */}
             <p className="greeting">{greeting} Welcome to my portfolio!</p>
+            
+            {/* Professional Badges */}
             <div className="header-badges">
               <span className="badge">Computer Science Graduate</span>
               <span className="badge">React/Node.js Developer</span>
               <span className="badge">Web3 Enthusiast</span>
               <span className="badge">Full Stack Engineer</span>
             </div>
+            
+            {/* Call-to-Action Buttons */}
             <div className="cta-buttons">
               <a href="#contact" className="cta-primary">Get In Touch</a>
               <a href="#projects" className="cta-secondary">View Projects</a>
@@ -128,17 +171,20 @@ const Profile = () => {
         </div>
       </header>
 
-      {/* About Section */}
+      {/* ===== ABOUT SECTION ===== */}
       <section className="about-section" id="about">
         <div className="container">
           <h2 className="section-title">About Me</h2>
           <div className="about-content">
+            {/* Main Bio Text */}
             <p className="bio-text">
               I'm a Computer Science graduate (2025) from Misr International University, passionate about 
               software engineering, UI/UX, and blockchain development. With a strong foundation in 
               full-stack development, cybersecurity, and scalable application design, I combine technical 
               depth with creativity to build secure and user-friendly systems.
             </p>
+            
+            {/* Expandable Full Bio */}
             {showFullBio && (
               <div className="full-bio">
                 <p>
@@ -147,6 +193,8 @@ const Profile = () => {
                   My goal is to grow as a software engineer while building impactful solutions through innovation, 
                   collaboration, and continuous learning.
                 </p>
+                
+                {/* Education and Experience Details */}
                 <div className="education-experience">
                   <h4>🎓 Education</h4>
                   <p>B.Sc. in Computer Science & Information Systems – Misr International University (2021–2025)</p>
@@ -161,6 +209,8 @@ const Profile = () => {
                 </div>
               </div>
             )}
+            
+            {/* Bio Toggle Button */}
             <button className="bio-toggle" onClick={toggleBio}>
               {showFullBio ? 'Show Less' : 'Read More'}
             </button>
@@ -168,10 +218,11 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* ===== STATISTICS SECTION ===== */}
       <section className="stats-section">
         <div className="container">
           <div className="stats-grid">
+            {/* Achievement Statistics */}
             <div className="stat-card">
               <div className="stat-number">6+</div>
               <div className="stat-label">Projects Completed</div>
@@ -192,11 +243,12 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
+      {/* ===== SKILLS SECTION ===== */}
       <section className="skills-section" id="skills">
         <div className="container">
           <h2 className="section-title">Skills</h2>
           <div className="skills-grid">
+            {/* Programming Languages Category */}
             <div className="skill-category">
               <h3>Programming Languages</h3>
               <ul className="skills-list">
@@ -209,6 +261,8 @@ const Profile = () => {
                 <li>Dart</li>
               </ul>
             </div>
+            
+            {/* Frontend & UI/UX Category */}
             <div className="skill-category">
               <h3>Frontend & UI/UX</h3>
               <ul className="skills-list">
@@ -220,6 +274,8 @@ const Profile = () => {
                 <li>Figma</li>
               </ul>
             </div>
+            
+            {/* Backend & Databases Category */}
             <div className="skill-category">
               <h3>Backend & Databases</h3>
               <ul className="skills-list">
@@ -231,6 +287,8 @@ const Profile = () => {
                 <li>Firebase</li>
               </ul>
             </div>
+            
+            {/* Mobile & Tools Category */}
             <div className="skill-category">
               <h3>Mobile & Tools</h3>
               <ul className="skills-list">
@@ -246,11 +304,12 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
+      {/* ===== PROJECTS SECTION ===== */}
       <section className="projects-section" id="projects">
         <div className="container">
           <h2 className="section-title">Featured Projects</h2>
           <div className="projects-grid">
+            {/* Featured Project - CargoTrace Finance */}
             <div className="project-card featured">
               <div className="project-badge">🏆 2nd Place ICP Hackathon</div>
               <h3>CargoTrace Finance</h3>
@@ -262,6 +321,8 @@ const Profile = () => {
                 <span>DeFi</span>
               </div>
             </div>
+            
+            {/* Cybersecurity Training Platform */}
             <div className="project-card">
               <h3>Cybersecurity Awareness Training Platform</h3>
               <p>Graduation project featuring simulated real-world attacks, authentication, role-based access control, and progress tracking.</p>
@@ -272,6 +333,8 @@ const Profile = () => {
                 <span>Express.js</span>
               </div>
             </div>
+            
+            {/* Volunteens App */}
             <div className="project-card">
               <h3>Volunteens Web & Mobile App</h3>
               <p>Recruitment and event management platform for volunteers with real-time event coordination and role-based access.</p>
@@ -282,6 +345,8 @@ const Profile = () => {
                 <span>Firebase</span>
               </div>
             </div>
+            
+            {/* Restaurant Web App */}
             <div className="project-card">
               <h3>Aussie Food Restaurant Web App</h3>
               <p>Online food ordering and reservation system with payment gateway integration.</p>
@@ -292,6 +357,8 @@ const Profile = () => {
                 <span>Payment API</span>
               </div>
             </div>
+            
+            {/* Pharmaceutical Management System */}
             <div className="project-card">
               <h3>Linkopharm Web App</h3>
               <p>Pharmaceutical inventory and sales management system with admin dashboards.</p>
@@ -302,6 +369,8 @@ const Profile = () => {
                 <span>JavaScript</span>
               </div>
             </div>
+            
+            {/* Landing Page Project */}
             <div className="project-card">
               <h3>Seductive Pharaohs Landing Page</h3>
               <p>Premium landing page designed and built using Framer for a modeling agency with focus on UI/UX.</p>
@@ -315,16 +384,20 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* ===== CONTACT SECTION ===== */}
       <section className="contact-section" id="contact">
         <div className="container">
           <h2 className="section-title">Get In Touch</h2>
           <div className="contact-content">
+            {/* Contact Introduction */}
             <p className="contact-intro">
               I'm always interested in new opportunities and exciting projects. 
               Feel free to reach out for collaborations, job opportunities, or just to say hello!
             </p>
+            
+            {/* Contact Links */}
             <div className="contact-links">
+              {/* Email Contact */}
               <a 
                 href="mailto:mohamed.ali@example.com" 
                 className="contact-link email"
@@ -333,6 +406,8 @@ const Profile = () => {
               >
                 📧 mohamed.ali@example.com
               </a>
+              
+              {/* LinkedIn Profile */}
               <a 
                 href="https://linkedin.com/in/mohamed-ali-dev" 
                 className="contact-link linkedin"
@@ -341,6 +416,8 @@ const Profile = () => {
               >
                 💼 LinkedIn Profile
               </a>
+              
+              {/* GitHub Profile */}
               <a 
                 href="https://github.com/mohamed-ali-dev" 
                 className="contact-link github"
@@ -354,7 +431,7 @@ const Profile = () => {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* ===== FOOTER ===== */}
       <footer className="footer">
         <div className="container">
           <p className="copyright">
