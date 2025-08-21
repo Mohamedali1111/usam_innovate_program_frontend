@@ -6,6 +6,7 @@ const Profile = () => {
   const [showFullBio, setShowFullBio] = useState(false);
   const [greeting, setGreeting] = useState('');
   const [activeSection, setActiveSection] = useState('home');
+  const [typedText, setTypedText] = useState('');
 
   // Time-based greeting
   useEffect(() => {
@@ -16,6 +17,23 @@ const Profile = () => {
       return 'Good Evening!';
     };
     setGreeting(getGreeting());
+  }, []);
+
+  // Typing animation for tagline
+  useEffect(() => {
+    const text = "Turning complex technical concepts into intuitive, scalable products";
+    let index = 0;
+    
+    const timer = setInterval(() => {
+      if (index <= text.length) {
+        setTypedText(text.slice(0, index));
+        index++;
+      } else {
+        clearInterval(timer);
+      }
+    }, 50);
+
+    return () => clearInterval(timer);
   }, []);
 
   // Toggle dark mode
@@ -94,12 +112,17 @@ const Profile = () => {
           <div className="header-text">
             <h1 className="name">Mohamed Ali</h1>
             <p className="profession">Full Stack Developer & Blockchain Enthusiast</p>
-            <p className="tagline">Turning complex technical concepts into intuitive, scalable products</p>
+            <p className="tagline typing-effect">{typedText}<span className="cursor">|</span></p>
             <p className="greeting">{greeting} Welcome to my portfolio!</p>
             <div className="header-badges">
               <span className="badge">Computer Science Graduate</span>
               <span className="badge">React/Node.js Developer</span>
               <span className="badge">Web3 Enthusiast</span>
+              <span className="badge">Full Stack Engineer</span>
+            </div>
+            <div className="cta-buttons">
+              <a href="#contact" className="cta-primary">Get In Touch</a>
+              <a href="#projects" className="cta-secondary">View Projects</a>
             </div>
           </div>
         </div>
@@ -141,6 +164,30 @@ const Profile = () => {
             <button className="bio-toggle" onClick={toggleBio}>
               {showFullBio ? 'Show Less' : 'Read More'}
             </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="stats-section">
+        <div className="container">
+          <div className="stats-grid">
+            <div className="stat-card">
+              <div className="stat-number">6+</div>
+              <div className="stat-label">Projects Completed</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">2nd</div>
+              <div className="stat-label">ICP Hackathon Place</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">3+</div>
+              <div className="stat-label">Years Experience</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">100%</div>
+              <div className="stat-label">Client Satisfaction</div>
+            </div>
           </div>
         </div>
       </section>
