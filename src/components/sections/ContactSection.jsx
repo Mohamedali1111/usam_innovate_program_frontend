@@ -21,92 +21,32 @@ const ContactSection = () => {
       console.log('📧 Sending contact form email...')
       console.log('📧 Form data:', formData)
       
-      // Send email using Resend API
-      const response = await fetch('https://api.resend.com/emails', {
+      // Send email using Vercel API endpoint
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
-          'Authorization': 'Bearer re_PcoP8wwz_NLRPur7RNYF4eRqRpjMzdXgJ',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          from: 'Portfolio Contact <onboarding@resend.dev>',
-          to: ['mohamedali200bu@gmail.com'],
-          subject: `New Contact Form Submission from ${formData.name}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-              <h2 style="color: #334155; border-bottom: 2px solid #334155; padding-bottom: 10px;">
-                New Contact Form Submission
-              </h2>
-              
-              <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                <h3 style="color: #475569; margin-top: 0;">Contact Details:</h3>
-                <p><strong>Name:</strong> ${formData.name}</p>
-                <p><strong>Email:</strong> <a href="mailto:${formData.email}" style="color: #334155;">${formData.email}</a></p>
-                <p><strong>Submitted:</strong> ${new Date().toLocaleString()}</p>
-              </div>
-              
-              <div style="background: #ffffff; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
-                <h3 style="color: #475569; margin-top: 0;">Message:</h3>
-                <p style="line-height: 1.6; color: #334155;">${formData.message.replace(/\n/g, '<br>')}</p>
-              </div>
-              
-              <div style="margin-top: 20px; padding: 15px; background: #f1f5f9; border-radius: 8px;">
-                <p style="margin: 0; color: #64748b; font-size: 14px;">
-                  This message was sent from your portfolio contact form.
-                </p>
-              </div>
-            </div>
-          `,
-          text: `
-            New Contact Form Submission
-            
-            Name: ${formData.name}
-            Email: ${formData.email}
-            Submitted: ${new Date().toLocaleString()}
-            
-            Message:
-            ${formData.message}
-            
-            ---
-            This message was sent from your portfolio contact form.
-          `
-        })
+        body: JSON.stringify(formData)
       })
 
       if (response.ok) {
         const result = await response.json()
         console.log('✅ Email sent successfully!')
-        console.log('📧 Email ID:', result.id)
-        console.log('📧 Sent to: mohamedali200bu@gmail.com')
+        console.log('📧 Response:', result)
         
         showNotification('Thank you for your message! I will get back to you soon.', 'success')
         resetForm()
       } else {
-        const errorText = await response.text()
-        console.error('❌ Email sending failed:', errorText)
+        const errorData = await response.json()
+        console.error('❌ Email sending failed:', errorData)
         
-        // Fallback: Show success message and log the data
-        console.log('📧 Fallback: Form submission logged')
-        console.log('📧 Name:', formData.name)
-        console.log('📧 Email:', formData.email)
-        console.log('📧 Message:', formData.message)
-        console.log('📧 Would send to: mohamedali200bu@gmail.com')
-        
-        showNotification('Thank you for your message! I will get back to you soon.', 'success')
-        resetForm()
+        showNotification('Sorry, there was an error sending your message. Please try again.', 'error')
       }
     } catch (error) {
       console.error('❌ Form submission error:', error)
       
-      // Fallback: Show success message and log the data
-      console.log('📧 Fallback: Form submission logged')
-      console.log('📧 Name:', formData.name)
-      console.log('📧 Email:', formData.email)
-      console.log('📧 Message:', formData.message)
-      console.log('📧 Would send to: mohamedali200bu@gmail.com')
-      
-      showNotification('Thank you for your message! I will get back to you soon.', 'success')
-      resetForm()
+      showNotification('Sorry, there was an error sending your message. Please try again.', 'error')
     }
   }
 
