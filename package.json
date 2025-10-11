@@ -18,6 +18,7 @@
     "analyze": "npm run build && npx vite-bundle-analyzer dist"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "framer-motion": "^10.16.4",
     "lucide-react": "^0.263.1",
     "react": "^18.2.0",
