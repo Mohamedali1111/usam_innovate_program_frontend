@@ -39,12 +39,20 @@ export default async function handler(req, res) {
     })
 
     // Send email using Resend
+    console.log('🔑 RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY)
+    console.log('🔑 RESEND_API_KEY length:', process.env.RESEND_API_KEY?.length)
+    
     if (process.env.RESEND_API_KEY) {
       try {
+        console.log('📧 Attempting to import Resend...')
         // Import Resend dynamically since we're using ES modules
         const { Resend } = await import('resend')
-        const resend = new Resend(process.env.RESEND_API_KEY)
+        console.log('📧 Resend imported successfully')
         
+        const resend = new Resend(process.env.RESEND_API_KEY)
+        console.log('📧 Resend instance created')
+        
+        console.log('📧 Attempting to send email...')
         const emailData = await resend.emails.send({
           from: 'Portfolio Contact <onboarding@resend.dev>',
           to: ['mohamedali200bu@gmail.com'],
@@ -90,8 +98,14 @@ export default async function handler(req, res) {
         })
 
         console.log('✅ Email sent successfully:', emailData.data?.id)
+        console.log('📧 Full email response:', emailData)
       } catch (emailError) {
         console.error('❌ Email sending failed:', emailError)
+        console.error('❌ Email error details:', {
+          message: emailError.message,
+          stack: emailError.stack,
+          name: emailError.name
+        })
         // Don't fail the request if email fails, just log it
       }
     } else {
