@@ -1,19 +1,17 @@
 import React, { useState, useCallback } from 'react'
-import { Link, useLocation } from 'react-router-dom'
 import { useTheme } from '../contexts/ThemeContext'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { isDark, toggleTheme } = useTheme()
-  const location = useLocation()
 
   const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/skills', label: 'Skills' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/contact', label: 'Contact' }
+    { href: '#home', label: 'Home' },
+    { href: '#about', label: 'About' },
+    { href: '#skills', label: 'Skills' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#contact', label: 'Contact' }
   ]
 
   const toggleMenu = useCallback(() => {
@@ -24,36 +22,44 @@ const Navbar = () => {
     setIsMenuOpen(false)
   }, [])
 
-  const isActive = (path) => location.pathname === path
+  const scrollToSection = (href) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+    closeMenu()
+  }
 
   return (
-    <nav className="bg-white/80 dark:bg-dark-900/80 backdrop-blur-md border-b border-gray-200 dark:border-dark-700 sticky top-0 z-50">
+    <nav className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200 dark:border-slate-700 sticky top-0 z-50 shadow-sm">
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-primary-600 to-purple-600 rounded-lg flex items-center justify-center">
+          <button 
+            onClick={() => scrollToSection('#home')}
+            className="flex items-center space-x-2 hover:opacity-80 transition-opacity duration-200"
+          >
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-md">
               <span className="text-white font-bold text-sm">MA</span>
             </div>
-            <span className="text-xl font-bold text-gray-900 dark:text-white">
+            <span className="text-xl font-bold text-slate-900 dark:text-white">
               Mohamed Ali
             </span>
-          </Link>
+          </button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`font-medium transition-colors duration-200 ${
-                  isActive(link.path)
-                    ? 'text-primary-600 dark:text-primary-400'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400'
-                }`}
+              <button
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className="font-medium transition-colors duration-200 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400"
               >
                 {link.label}
-              </Link>
+              </button>
             ))}
           </div>
 
@@ -61,7 +67,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors duration-200"
+              className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200 shadow-sm"
               aria-label="Toggle theme"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -69,7 +75,7 @@ const Navbar = () => {
 
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-lg bg-gray-100 dark:bg-dark-800 hover:bg-gray-200 dark:hover:bg-dark-700 transition-colors duration-200"
+              className="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors duration-200 shadow-sm"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -79,21 +85,16 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-gray-200 dark:border-dark-700">
+          <div className="md:hidden border-t border-slate-200 dark:border-slate-700">
             <div className="py-4 space-y-2">
               {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={closeMenu}
-                  className={`block px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
-                    isActive(link.path)
-                      ? 'text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20'
-                      : 'text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-dark-800'
-                  }`}
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className="block w-full text-left px-4 py-2 rounded-lg font-medium transition-colors duration-200 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-slate-50 dark:hover:bg-slate-800"
                 >
                   {link.label}
-                </Link>
+                </button>
               ))}
             </div>
           </div>
