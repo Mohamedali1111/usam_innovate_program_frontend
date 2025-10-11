@@ -18,32 +18,21 @@ const ContactSection = () => {
 
   const onSubmit = async (formData) => {
     try {
-      console.log('📧 Sending contact form email...')
-      console.log('📧 Form data:', formData)
-      
-      // Simple solution: Just show success and log the data
-      // This ensures the form always works and you can see the submissions
       console.log('📧 Contact form submission received:')
       console.log('📧 Name:', formData.name)
       console.log('📧 Email:', formData.email)
       console.log('📧 Message:', formData.message)
       console.log('📧 Timestamp:', new Date().toISOString())
-      console.log('📧 Would send to: mohamedali200bu@gmail.com')
       
-      // Show success message
-      showNotification('Thank you for your message! I will get back to you soon.', 'success')
+      // Show honest message - form works but email sending is not configured
+      showNotification('Form submitted successfully! However, email sending is not configured. Please email me directly at mohamedali200bu@gmail.com', 'error')
       resetForm()
-      
-      // Optional: You can manually send emails using the utility
-      console.log('📧 To send this email manually, run:')
-      console.log(`node send-email.js "${formData.name}" "${formData.email}" "${formData.message}"`)
       
     } catch (error) {
       console.error('❌ Form submission error:', error)
       
-      // Even if there's an error, show success message
-      showNotification('Thank you for your message! I will get back to you soon.', 'success')
-      resetForm()
+      // Show error message
+      showNotification('Sorry, there was an error. Please email me directly at mohamedali200bu@gmail.com', 'error')
     }
   }
 
