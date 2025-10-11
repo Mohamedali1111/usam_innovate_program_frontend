@@ -26,19 +26,19 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-gray-50 dark:bg-dark-800 border-t border-gray-200 dark:border-dark-700">
-      <div className="container-custom py-8">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+    <footer className="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+      <div className="container-custom py-12">
+        <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
           <div className="text-center md:text-left">
-            <p className="text-gray-600 dark:text-gray-400">
+            <p className="text-slate-600 dark:text-slate-400 font-light">
               © {currentYear} Mohamed Ali. All rights reserved.
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
+            <p className="text-sm text-slate-500 dark:text-slate-500 mt-2 font-light">
               Software Engineer • Shorouk City, Cairo, Egypt
             </p>
           </div>
           
-          <div className="flex space-x-6">
+          <div className="flex space-x-8">
             {socialLinks.map((link) => {
               const Icon = link.icon
               return (
@@ -47,10 +47,10 @@ const Footer = () => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                  className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200"
                   aria-label={link.ariaLabel}
                 >
-                  <Icon className="w-5 h-5" />
+                  <Icon className="w-6 h-6" />
                 </a>
               )
             })}

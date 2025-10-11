@@ -14,37 +14,33 @@
   
   /* Smooth scrolling for anchor links */
   html {
-    scroll-padding-top: 80px; /* Account for fixed navbar */
+    scroll-padding-top: 100px; /* Account for fixed navbar */
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl;
+    @apply bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium py-4 px-8 rounded-none transition-all duration-300 tracking-wide uppercase text-sm;
   }
-  
+
   .btn-secondary {
-    @apply bg-slate-200 hover:bg-slate-300 dark:bg-slate-700 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200 font-semibold py-3 px-6 rounded-lg transition-all duration-300 border border-slate-300 dark:border-slate-600;
+    @apply border border-slate-900 dark:border-white text-slate-900 dark:text-white font-medium py-4 px-8 rounded-none transition-all duration-300 tracking-wide uppercase text-sm hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900;
   }
-  
+
   .card {
-    @apply bg-white dark:bg-slate-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-200 dark:border-slate-700;
+    @apply bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 transition-all duration-300;
   }
-  
+
   .section-padding {
-    @apply py-20 px-4 sm:px-6 lg:px-8;
+    @apply py-24 px-4 sm:px-6 lg:px-8;
   }
-  
+
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-6xl mx-auto;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
-  }
-  
   .glass-effect {
     @apply backdrop-blur-md bg-white/10 dark:bg-slate-800/10 border border-white/20 dark:border-slate-700/20;
   }

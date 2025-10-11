@@ -54,22 +54,19 @@ const ContactSection = () => {
       name: 'GitHub',
       url: 'https://github.com/Mohamedali1111',
       icon: Github,
-      description: 'View my code and projects',
-      color: 'hover:text-gray-900 dark:hover:text-white'
+      description: 'View my code and projects'
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/in/mohamed-ali-38b6a92b1/',
       icon: Linkedin,
-      description: 'Connect professionally',
-      color: 'hover:text-blue-600 dark:hover:text-blue-400'
+      description: 'Connect professionally'
     },
     {
       name: 'Portfolio',
       url: '#home',
       icon: Globe,
-      description: 'View my portfolio',
-      color: 'hover:text-blue-600 dark:hover:text-blue-400'
+      description: 'View my portfolio'
     }
   ]
 
@@ -93,20 +90,20 @@ const ContactSection = () => {
   }
 
   return (
-    <section id="contact" className="section-padding bg-white dark:bg-slate-900">
+    <section id="contact" className="section-padding bg-slate-50 dark:bg-slate-900">
       <div className="container-custom">
         {/* Header */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
+          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
             Let's Connect
-          </h1>
-          <p className="text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed">
+          </h2>
+          <p className="text-xl text-slate-500 dark:text-slate-500 max-w-3xl mx-auto leading-relaxed font-light">
             Ready to discuss your next project or explore collaboration opportunities? 
             I'm always interested in connecting with fellow developers, potential clients, and innovative teams.
           </p>
@@ -117,199 +114,233 @@ const ContactSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid lg:grid-cols-2 gap-12"
+          className="max-w-6xl mx-auto"
         >
-          {/* Contact Form */}
-          <motion.div variants={itemVariants} className="bg-slate-50 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
-            <div className="flex items-center gap-3 mb-8">
-              <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                <MessageCircle className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Send Message</h2>
-            </div>
-
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-                  required
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 ${
-                    errors.name 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
-                      : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700'
-                  } text-slate-900 dark:text-white`}
-                  placeholder="Your full name"
-                />
-                {errors.name && (
-                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  required
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 ${
-                    errors.email 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
-                      : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700'
-                  } text-slate-900 dark:text-white`}
-                  placeholder="your.email@example.com"
-                />
-                {errors.email && (
-                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
-                )}
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
-                  Message *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={values.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors duration-200 ${
-                    errors.message 
-                      ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
-                      : 'border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-700'
-                  } text-slate-900 dark:text-white resize-vertical`}
-                  placeholder="Tell me about your project, opportunity, or just say hello!"
-                />
-                {errors.message && (
-                  <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.message}</p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    Send Message
-                  </>
-                )}
-              </button>
-            </form>
-          </motion.div>
-
-          {/* Contact Information */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            {/* Contact Details */}
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                  <Building className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+          {/* Main Content Grid */}
+          <div className="grid lg:grid-cols-3 gap-12 mb-16">
+            
+            {/* Contact Form - Takes 2 columns */}
+            <motion.div variants={itemVariants} className="lg:col-span-2">
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-12 h-full">
+                <div className="flex items-center gap-6 mb-12">
+                  <div className="w-12 h-12 bg-slate-900 dark:bg-white flex items-center justify-center">
+                    <MessageCircle className="w-6 h-6 text-white dark:text-slate-900" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-slate-900 dark:text-white tracking-wide">Send Message</h3>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Contact Information</h2>
-              </div>
 
-              <div className="space-y-4">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon
-                  return (
-                    <div key={index} className="flex items-start gap-4 p-4 bg-white dark:bg-slate-700 rounded-lg">
-                      <div className="p-2 bg-slate-100 dark:bg-slate-600 rounded-lg flex-shrink-0">
-                        <Icon className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium text-slate-900 dark:text-white mb-1">
-                          {info.label}
-                        </h3>
-                        <a
-                          href={info.link}
-                          target={info.link.startsWith('http') ? '_blank' : undefined}
-                          rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                          className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200"
-                        >
-                          {info.value}
-                        </a>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">
-                          {info.description}
-                        </p>
-                      </div>
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-3 tracking-wide uppercase">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        required
+                        className={`w-full px-6 py-4 border focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors duration-200 ${
+                          errors.name 
+                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
+                            : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800'
+                        } text-slate-900 dark:text-white font-light`}
+                        placeholder="Your full name"
+                      />
+                      {errors.name && (
+                        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
+                      )}
                     </div>
-                  )
-                })}
-              </div>
-            </div>
 
-            {/* Social Links */}
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
-                  <Globe className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-                </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Connect With Me</h2>
-              </div>
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-3 tracking-wide uppercase">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        required
+                        className={`w-full px-6 py-4 border focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors duration-200 ${
+                          errors.email 
+                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
+                            : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800'
+                        } text-slate-900 dark:text-white font-light`}
+                        placeholder="your.email@example.com"
+                      />
+                      {errors.email && (
+                        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
+                      )}
+                    </div>
+                  </div>
 
-              <div className="grid grid-cols-1 gap-4">
-                {socialLinks.map((social, index) => {
-                  const Icon = social.icon
-                  return (
-                    <a
-                      key={index}
-                      href={social.url}
-                      target={social.url.startsWith('http') ? '_blank' : undefined}
-                      rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="flex items-center gap-4 p-4 bg-white dark:bg-slate-700 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-600 transition-colors duration-200 group"
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-3 tracking-wide uppercase">
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={values.message}
+                      onChange={handleChange}
+                      required
+                      rows={6}
+                      className={`w-full px-6 py-4 border focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors duration-200 ${
+                        errors.message 
+                          ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
+                          : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800'
+                      } text-slate-900 dark:text-white resize-vertical font-light`}
+                      placeholder="Tell me about your project, opportunity, or just say hello!"
+                    />
+                    {errors.message && (
+                      <p className="mt-2 text-sm text-red-600 dark:text-red-400">{errors.message}</p>
+                    )}
+                  </div>
+
+                  <div className="flex justify-end">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium py-4 px-12 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide uppercase text-sm"
                     >
-                      <div className="p-2 bg-slate-100 dark:bg-slate-600 rounded-lg group-hover:scale-110 transition-transform duration-200">
-                        <Icon className={`w-5 h-5 text-slate-600 dark:text-slate-400 transition-colors duration-200 ${social.color}`} />
-                      </div>
-                      <div className="flex-1">
-                        <h3 className="font-medium text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200">
-                          {social.name}
-                        </h3>
-                        <p className="text-sm text-slate-600 dark:text-slate-400">
-                          {social.description}
-                        </p>
-                      </div>
-                    </a>
-                  )
-                })}
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white dark:border-slate-900 border-t-transparent rounded-full animate-spin"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
               </div>
-            </div>
+            </motion.div>
 
-            {/* Additional Info */}
-            <div className="bg-slate-50 dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-8">
-              <div className="text-center p-6">
-                <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-3">
-                  Let's Work Together
-                </h3>
-                <p className="text-slate-600 dark:text-slate-400 mb-4">
-                  I'm currently available for:
-                </p>
-                <div className="space-y-2 text-sm text-slate-600 dark:text-slate-400">
-                  <p>• Full-time Software Engineering positions</p>
-                  <p>• Freelance web development projects</p>
-                  <p>• Open source contributions</p>
-                  <p>• Technical consulting and mentorship</p>
+            {/* Contact Information - Takes 1 column */}
+            <motion.div variants={itemVariants} className="space-y-8">
+              {/* Contact Details */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-10 h-10 bg-slate-900 dark:bg-white flex items-center justify-center">
+                    <Building className="w-5 h-5 text-white dark:text-slate-900" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-wide">Contact Info</h3>
+                </div>
+
+                <div className="space-y-6">
+                  {contactInfo.map((info, index) => {
+                    const Icon = info.icon
+                    return (
+                      <div key={index} className="flex items-start gap-4">
+                        <div className="w-8 h-8 bg-slate-900 dark:bg-white flex items-center justify-center flex-shrink-0 mt-1">
+                          <Icon className="w-4 h-4 text-white dark:text-slate-900" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-slate-900 dark:text-white mb-1 tracking-wide text-sm">
+                            {info.label}
+                          </h4>
+                          <a
+                            href={info.link}
+                            target={info.link.startsWith('http') ? '_blank' : undefined}
+                            rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                            className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-light text-sm break-all"
+                          >
+                            {info.value}
+                          </a>
+                          <p className="text-xs text-slate-500 dark:text-slate-500 mt-1 font-light">
+                            {info.description}
+                          </p>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-8">
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-10 h-10 bg-slate-900 dark:bg-white flex items-center justify-center">
+                    <Globe className="w-5 h-5 text-white dark:text-slate-900" />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white tracking-wide">Connect</h3>
+                </div>
+
+                <div className="space-y-4">
+                  {socialLinks.map((social, index) => {
+                    const Icon = social.icon
+                    return (
+                      <a
+                        key={index}
+                        href={social.url}
+                        target={social.url.startsWith('http') ? '_blank' : undefined}
+                        rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                        className="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-300 group"
+                      >
+                        <div className="w-8 h-8 bg-slate-900 dark:bg-white flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
+                          <Icon className="w-4 h-4 text-white dark:text-slate-900" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-semibold text-slate-900 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors duration-200 tracking-wide text-sm">
+                            {social.name}
+                          </h4>
+                          <p className="text-xs text-slate-500 dark:text-slate-500 font-light">
+                            {social.description}
+                          </p>
+                        </div>
+                      </a>
+                    )
+                  })}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Availability Section */}
+          <motion.div variants={itemVariants} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-12">
+            <div className="text-center max-w-4xl mx-auto">
+              <h3 className="text-3xl font-bold text-slate-900 dark:text-white mb-6 tracking-wide">
+                Let's Work Together
+              </h3>
+              <p className="text-lg text-slate-600 dark:text-slate-400 mb-8 font-light">
+                I'm currently available for:
+              </p>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-4">
+                    <Building className="w-8 h-8 text-white dark:text-slate-900" />
+                  </div>
+                  <h4 className="font-semibold text-slate-900 dark:text-white mb-2 tracking-wide">Full-time Positions</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-500 font-light">Software Engineering roles</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-4">
+                    <Globe className="w-8 h-8 text-white dark:text-slate-900" />
+                  </div>
+                  <h4 className="font-semibold text-slate-900 dark:text-white mb-2 tracking-wide">Freelance Projects</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-500 font-light">Web development work</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-4">
+                    <Github className="w-8 h-8 text-white dark:text-slate-900" />
+                  </div>
+                  <h4 className="font-semibold text-slate-900 dark:text-white mb-2 tracking-wide">Open Source</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-500 font-light">Contributions & collaborations</p>
+                </div>
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-4">
+                    <MessageCircle className="w-8 h-8 text-white dark:text-slate-900" />
+                  </div>
+                  <h4 className="font-semibold text-slate-900 dark:text-white mb-2 tracking-wide">Consulting</h4>
+                  <p className="text-sm text-slate-500 dark:text-slate-500 font-light">Technical guidance & mentorship</p>
                 </div>
               </div>
             </div>

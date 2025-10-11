@@ -47,39 +47,39 @@ const Portfolio = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section id="home" className="section-padding bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-700">
+      <section id="home" className="section-padding bg-white dark:bg-slate-900">
         <div className="container-custom">
           <motion.div
-            className="text-center max-w-5xl mx-auto"
+            className="text-center max-w-4xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
             <motion.div 
-              className="mb-8"
+              className="mb-12"
               variants={itemVariants}
             >
-              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-2xl">MA</span>
+              <div className="w-20 h-20 mx-auto mb-8 bg-slate-900 dark:bg-white rounded-full flex items-center justify-center">
+                <span className="text-white dark:text-slate-900 font-bold text-xl">MA</span>
               </div>
             </motion.div>
             
             <motion.h1 
-              className="text-4xl md:text-6xl font-bold text-slate-900 dark:text-white mb-4"
+              className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-6 tracking-tight"
               variants={itemVariants}
             >
               Mohamed Ali
             </motion.h1>
             
             <motion.h2 
-              className="text-xl md:text-2xl font-medium text-slate-600 dark:text-slate-300 mb-6"
+              className="text-xl md:text-2xl font-light text-slate-600 dark:text-slate-400 mb-8 tracking-wide"
               variants={itemVariants}
             >
               Software Engineer & Full-Stack Developer
             </motion.h2>
             
             <motion.p 
-              className="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 max-w-3xl mx-auto leading-relaxed"
+              className="text-lg text-slate-500 dark:text-slate-500 mb-16 max-w-2xl mx-auto leading-relaxed font-light"
               variants={itemVariants}
             >
               {greeting}! Computer Science graduate with hands-on experience in full-stack and frontend development, 
@@ -89,7 +89,7 @@ const Portfolio = () => {
 
             {/* Professional CTA */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-6 justify-center"
               variants={itemVariants}
             >
               <motion.div
@@ -99,7 +99,7 @@ const Portfolio = () => {
               >
                 <a
                   href="#projects"
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-all duration-300 inline-flex items-center gap-2 shadow-lg hover:shadow-xl"
+                  className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium py-4 px-8 rounded-none transition-all duration-300 inline-flex items-center gap-3 tracking-wide uppercase text-sm"
                 >
                   View My Work
                   <ArrowRight className="w-4 h-4" />
@@ -113,7 +113,7 @@ const Portfolio = () => {
               >
                 <a
                   href="#contact"
-                  className="bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-semibold py-3 px-8 rounded-lg transition-all duration-300 inline-flex items-center gap-2 border border-slate-300 dark:border-slate-600 shadow-sm hover:shadow-md"
+                  className="border border-slate-900 dark:border-white text-slate-900 dark:text-white font-medium py-4 px-8 rounded-none transition-all duration-300 inline-flex items-center gap-3 tracking-wide uppercase text-sm hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900"
                 >
                   Get In Touch
                   <Mail className="w-4 h-4" />
