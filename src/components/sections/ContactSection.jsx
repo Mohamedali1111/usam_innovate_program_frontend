@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Github, Linkedin, Globe, MessageCircle, Building } from 'lucide-react'
+import { Mail, Phone, MapPin, Github, Linkedin, Globe, MessageCircle, ArrowRight } from 'lucide-react'
 
 const ContactSection = () => {
   const contactInfo = [
@@ -9,22 +9,25 @@ const ContactSection = () => {
       label: 'Email',
       value: 'mohamedali200bu@gmail.com',
       link: 'mailto:mohamedali200bu@gmail.com',
-      description: 'Send me an email anytime'
+      description: 'Get in touch for project discussions'
     },
     {
       icon: Phone,
       label: 'Phone',
       value: '+20 1014800766',
       link: 'tel:+201014800766',
-      description: 'Call me for urgent matters'
+      description: 'Available for urgent consultations'
     },
     {
       icon: MapPin,
       label: 'Location',
       value: 'Cairo, Egypt',
       link: 'https://maps.google.com/?q=Cairo,Egypt',
-      description: 'Based in Cairo, Egypt'
-    },
+      description: 'Open to remote and local projects'
+    }
+  ]
+
+  const socialLinks = [
     {
       icon: Github,
       label: 'GitHub',
@@ -37,142 +40,141 @@ const ContactSection = () => {
       label: 'LinkedIn',
       value: 'linkedin.com/in/mohamed-ali',
       link: 'https://linkedin.com/in/mohamed-ali',
-      description: 'Connect with me professionally'
+      description: 'Connect professionally'
     },
     {
       icon: Globe,
-      label: 'Website',
+      label: 'Portfolio',
       value: 'mohamed-ali-portfolio.vercel.app',
       link: 'https://mohamed-ali-portfolio.vercel.app',
-      description: 'Visit my portfolio website'
+      description: 'View my work portfolio'
     }
   ]
 
-  const availability = [
-    { day: 'Monday - Friday', time: '9:00 AM - 6:00 PM', status: 'Available' },
-    { day: 'Saturday', time: '10:00 AM - 4:00 PM', status: 'Available' },
-    { day: 'Sunday', time: 'Closed', status: 'Unavailable' }
-  ]
-
   return (
-    <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-24 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-            Let's Connect
+          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-6">
+            Let's Work Together
           </h2>
-          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
-            Ready to discuss your next project? I'm always excited to work on new challenges and bring ideas to life.
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Ready to bring your ideas to life? I'm passionate about creating exceptional digital experiences 
+            and would love to discuss your next project.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Primary Contact */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
+            className="lg:col-span-2"
           >
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
-              Get In Touch
-            </h3>
-            
-            <div className="space-y-6">
-              {contactInfo.map((item, index) => (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+                Get In Touch
+              </h3>
+              
+              <div className="space-y-6">
+                {contactInfo.map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.link}
+                    target={item.link.startsWith('http') ? '_blank' : '_self'}
+                    rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                    className="flex items-center space-x-4 p-6 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200 group border border-transparent hover:border-slate-200 dark:hover:border-slate-600"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex-shrink-0 w-14 h-14 bg-slate-100 dark:bg-slate-700 rounded-xl flex items-center justify-center group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors duration-200">
+                      <item.icon className="w-7 h-7 text-slate-600 dark:text-slate-300" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-slate-900 dark:text-white text-lg mb-1">
+                        {item.label}
+                      </h4>
+                      <p className="text-slate-600 dark:text-slate-300 font-medium text-lg mb-1">
+                        {item.value}
+                      </p>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                        {item.description}
+                      </p>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-200" />
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Call to Action */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-700"
+              >
                 <motion.a
-                  key={index}
-                  href={item.link}
-                  target={item.link.startsWith('http') ? '_blank' : '_self'}
-                  rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                  className="flex items-start space-x-4 p-4 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-colors duration-200 group"
+                  href="mailto:mohamedali200bu@gmail.com"
+                  className="inline-flex items-center justify-center w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-4 px-8 rounded-xl font-semibold text-lg hover:bg-slate-800 dark:hover:bg-slate-100 transition-all duration-200 shadow-lg hover:shadow-xl"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:bg-slate-300 dark:group-hover:bg-slate-600 transition-colors duration-200">
-                    <item.icon className="w-6 h-6 text-slate-600 dark:text-slate-300" />
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
-                      {item.label}
-                    </h4>
-                    <p className="text-slate-600 dark:text-slate-300 font-medium mb-1">
-                      {item.value}
-                    </p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
-                      {item.description}
-                    </p>
-                  </div>
+                  <Mail className="w-6 h-6 mr-3" />
+                  Start a Conversation
+                  <ArrowRight className="w-5 h-5 ml-3" />
                 </motion.a>
-              ))}
+              </motion.div>
             </div>
           </motion.div>
 
-          {/* Availability & Quick Actions */}
+          {/* Social Links */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
-              Availability
-            </h3>
-            
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 mb-8">
+            <div className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-200 dark:border-slate-700 h-fit">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+                Connect With Me
+              </h3>
+              
               <div className="space-y-4">
-                {availability.map((slot, index) => (
-                  <div key={index} className="flex items-center justify-between py-2">
-                    <div>
-                      <p className="font-medium text-slate-900 dark:text-white">
-                        {slot.day}
-                      </p>
-                      <p className="text-sm text-slate-600 dark:text-slate-300">
-                        {slot.time}
+                {socialLinks.map((item, index) => (
+                  <motion.a
+                    key={index}
+                    href={item.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-4 p-4 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition-all duration-200 group"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="flex-shrink-0 w-12 h-12 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors duration-200">
+                      <item.icon className="w-6 h-6 text-slate-600 dark:text-slate-300" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
+                        {item.label}
+                      </h4>
+                      <p className="text-sm text-slate-500 dark:text-slate-400">
+                        {item.description}
                       </p>
                     </div>
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      slot.status === 'Available' 
-                        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                        : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                    }`}>
-                      {slot.status}
-                    </span>
-                  </div>
+                    <ArrowRight className="w-4 h-4 text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors duration-200" />
+                  </motion.a>
                 ))}
               </div>
-            </div>
-
-            {/* Quick Actions */}
-            <div className="space-y-4">
-              <motion.a
-                href="mailto:mohamedali200bu@gmail.com"
-                className="flex items-center justify-center w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-4 px-6 rounded-lg font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Mail className="w-5 h-5 mr-2" />
-                Send Email
-              </motion.a>
-              
-              <motion.a
-                href="https://github.com/Mohamedali1111"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center w-full bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white py-4 px-6 rounded-lg font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-200"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Github className="w-5 h-5 mr-2" />
-                View GitHub
-              </motion.a>
             </div>
           </motion.div>
         </div>
@@ -181,19 +183,19 @@ const ContactSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-20"
         >
-          <div className="bg-slate-100 dark:bg-slate-800 rounded-xl p-8">
-            <MessageCircle className="w-12 h-12 text-slate-600 dark:text-slate-300 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
-              Let's Build Something Amazing Together
+          <div className="bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-2xl p-12">
+            <MessageCircle className="w-16 h-16 text-slate-600 dark:text-slate-300 mx-auto mb-6" />
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+              Ready to Create Something Amazing?
             </h3>
-            <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+            <p className="text-slate-600 dark:text-slate-300 max-w-3xl mx-auto text-lg leading-relaxed">
               I'm always excited to work on new projects and collaborate with passionate people. 
-              Whether you have a specific project in mind or just want to chat about technology, 
-              I'd love to hear from you!
+              Whether you have a specific project in mind or just want to explore possibilities, 
+              let's start a conversation and see what we can build together.
             </p>
           </div>
         </motion.div>
