@@ -14,17 +14,17 @@
   
   /* Smooth scrolling for anchor links */
   html {
-    scroll-padding-top: 100px; /* Account for fixed navbar */
+    scroll-padding-top: 80px; /* Account for fixed navbar */
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium py-4 px-8 rounded-none transition-all duration-300 tracking-wide uppercase text-sm;
+    @apply bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium py-3 sm:py-4 px-6 sm:px-8 transition-all duration-300 tracking-wide uppercase text-xs sm:text-sm;
   }
 
   .btn-secondary {
-    @apply border border-slate-900 dark:border-white text-slate-900 dark:text-white font-medium py-4 px-8 rounded-none transition-all duration-300 tracking-wide uppercase text-sm hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900;
+    @apply border border-slate-900 dark:border-white text-slate-900 dark:text-white font-medium py-3 sm:py-4 px-6 sm:px-8 transition-all duration-300 tracking-wide uppercase text-xs sm:text-sm hover:bg-slate-900 dark:hover:bg-white hover:text-white dark:hover:text-slate-900;
   }
 
   .card {
@@ -32,7 +32,7 @@
   }
 
   .section-padding {
-    @apply py-24 px-4 sm:px-6 lg:px-8;
+    @apply py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8;
   }
 
   .container-custom {

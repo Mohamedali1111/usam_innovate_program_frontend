@@ -7,6 +7,36 @@ const ProjectsSection = () => {
   const projects = [
     {
       id: 1,
+      title: "Quicksite – Template Marketplace Platform",
+      description: "A premium web platform serving as a marketplace for buying, selling, and requesting website templates across all major technologies. Features dual dashboards for users and sellers, custom development services, and localized pricing in Egyptian Pounds. Built with clean, gradient-rich dark/light UI system for a premium experience.",
+      techStack: ["Next.js", "React", "Tailwind CSS", "Node.js", "MongoDB", "Firebase Auth", "Chart.js"],
+      githubUrl: null,
+      liveUrl: null,
+      badges: ["Full Stack", "Marketplace", "Featured"],
+      year: "2025"
+    },
+    {
+      id: 2,
+      title: "Manor House Interior Design – Fullstack Web Platform",
+      description: "A premium, production-ready website built for a luxury interior design office to showcase services, portfolio, and client trust. Features custom design system with golden accent colors, responsive layout, dark/light mode, SEO optimization, and modern architecture with Next.js 15 App Router.",
+      techStack: ["Next.js 15", "TypeScript", "Tailwind CSS v4", "MongoDB", "Vercel", "Lucide"],
+      githubUrl: null,
+      liveUrl: null,
+      badges: ["Full Stack", "Premium Design", "Production Ready"],
+      year: "2025"
+    },
+    {
+      id: 3,
+      title: "Linko Pharm – Pharmaceutical Web Application",
+      description: "Developed a comprehensive web application for Linko Pharm, a leading international pharmaceutical company, focused on enhancing customer experience and providing essential pharmaceutical information. Features user-friendly product catalog, online ordering system, and centralized platform to boost market reach and operational efficiency.",
+      techStack: ["React", "Node.js", "MongoDB", "Express.js", "Tailwind CSS"],
+      githubUrl: null,
+      liveUrl: null,
+      badges: ["Full Stack", "E-commerce", "Healthcare"],
+      year: "2025"
+    },
+    {
+      id: 4,
       title: "CargoTrace – Trade Finance Platform",
       description: "Built a DeFi platform that mirrored real-world trade documents (CargoX) into blockchain NFTs to trigger financing. Designed React frontend with blockchain integration, enabling traders to submit docs, track funding, and manage repayments.",
       techStack: ["ICP", "React", "Rust", "Blockchain"],
@@ -16,7 +46,7 @@ const ProjectsSection = () => {
       year: "2025"
     },
     {
-      id: 2,
+      id: 5,
       title: "Cybersecurity Awareness Training Platform",
       description: "Developed a cybersecurity training platform simulating phishing and malware scenarios to test user responses. Implemented authentication, role-based dashboards, performance tracking, and simulation scoring logic.",
       techStack: ["Node.js", "MongoDB", "JavaScript", "EJS", "Bootstrap"],
@@ -26,7 +56,7 @@ const ProjectsSection = () => {
       year: "2024"
     },
     {
-      id: 3,
+      id: 6,
       title: "Volunteens – Nonprofit Volunteer Platform",
       description: "Built full-stack web and mobile portals for event coordination and real-time volunteer engagement. Integrated role-based access, live notifications, and cloud-synced scheduling features.",
       techStack: ["Spring Boot", "Flutter", "Firebase"],
@@ -36,7 +66,7 @@ const ProjectsSection = () => {
       year: "2024"
     },
     {
-      id: 4,
+      id: 7,
       title: "Aussie Food – Restaurant Web App",
       description: "Created an end-to-end food ordering and table reservation system with responsive UI and secure payment API integration. Includes admin dashboard for managing menu and reservations.",
       techStack: ["Node.js", "Express.js", "MongoDB", "React", "Bootstrap"],
@@ -52,6 +82,10 @@ const ProjectsSection = () => {
     hackathon: projects.filter(p => p.badges.includes("Hackathon Project")).length,
     graduation: projects.filter(p => p.badges.includes("Graduation Project")).length,
     featured: projects.filter(p => p.badges.includes("Featured")).length,
+    marketplace: projects.filter(p => p.badges.includes("Marketplace")).length,
+    production: projects.filter(p => p.badges.includes("Production Ready")).length,
+    healthcare: projects.filter(p => p.badges.includes("Healthcare")).length,
+    ecommerce: projects.filter(p => p.badges.includes("E-commerce")).length,
   }
 
   const getBadgeColor = (badge) => {
@@ -63,64 +97,81 @@ const ProjectsSection = () => {
       case "Web Application": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
       case "Full Stack": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
       case "Mobile App": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
+      case "Marketplace": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
+      case "Premium Design": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
+      case "Production Ready": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
+      case "Healthcare": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
+      case "E-commerce": return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
       default: return "bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white border-slate-200 dark:border-slate-700";
     }
   }
 
   return (
-    <section id="projects" className="section-padding bg-white dark:bg-slate-900">
-      <div className="container-custom">
+    <section id="projects" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-slate-900">
+      <div className="max-w-6xl mx-auto">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-16 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl md:text-6xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 tracking-tight">
             Portfolio Projects
           </h2>
-          <p className="text-xl text-slate-500 dark:text-slate-500 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-500 max-w-3xl mx-auto leading-relaxed font-light px-4">
             A curated collection of my most impactful projects, showcasing my expertise in full-stack development,
             mobile applications, and innovative solutions.
           </p>
         </motion.div>
 
-        {/* Project Statistics */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 text-center">
-            <div className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              {projectStats.total}
-            </div>
-            <div className="text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Total Projects</div>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 text-center">
-            <div className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              {projectStats.featured}
-            </div>
-            <div className="text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Featured</div>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 text-center">
-            <div className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              {projectStats.hackathon}
-            </div>
-            <div className="text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Hackathon</div>
-          </div>
-          <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-8 text-center">
-            <div className="text-4xl font-bold text-slate-900 dark:text-white mb-3">
-              {projectStats.graduation}
-            </div>
-            <div className="text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Graduation</div>
-          </div>
-        </motion.div>
+               {/* Project Statistics */}
+               <motion.div
+                 className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20"
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 transition={{ duration: 0.6, delay: 0.1 }}
+                 viewport={{ once: true }}
+               >
+                 <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 text-center">
+                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 md:mb-3">
+                     {projectStats.total}
+                   </div>
+                   <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Total Projects</div>
+                 </div>
+                 <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 text-center">
+                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 md:mb-3">
+                     {projectStats.featured}
+                   </div>
+                   <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Featured</div>
+                 </div>
+                 <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 text-center">
+                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 md:mb-3">
+                     {projectStats.marketplace}
+                   </div>
+                   <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Marketplace</div>
+                 </div>
+                 <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 text-center">
+                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 md:mb-3">
+                     {projectStats.production}
+                   </div>
+                   <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Production</div>
+                 </div>
+                 <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 text-center">
+                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 md:mb-3">
+                     {projectStats.hackathon}
+                   </div>
+                   <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Hackathon</div>
+                 </div>
+                 <div className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 p-4 sm:p-6 md:p-8 text-center">
+                   <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-1 sm:mb-2 md:mb-3">
+                     {projectStats.graduation}
+                   </div>
+                   <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide uppercase">Graduation</div>
+                 </div>
+               </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12">
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -130,38 +181,38 @@ const ProjectsSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="p-10 flex-grow">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white tracking-wide">{project.title}</h3>
-                  <span className="text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide">{project.year}</span>
+              <div className="p-6 sm:p-8 md:p-10 flex-grow">
+                <div className="flex items-center justify-between mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-wide">{project.title}</h3>
+                  <span className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-medium tracking-wide">{project.year}</span>
                 </div>
-                <p className="text-slate-600 dark:text-slate-400 mb-8 leading-relaxed font-light">
+                <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mb-6 sm:mb-8 leading-relaxed font-light">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
                   {project.techStack.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-4 py-2 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-sm font-medium tracking-wide border border-slate-200 dark:border-slate-700">
+                    <span key={techIndex} className="px-3 sm:px-4 py-1 sm:py-2 bg-white dark:bg-slate-900 text-slate-900 dark:text-white text-xs sm:text-sm font-medium tracking-wide border border-slate-200 dark:border-slate-700">
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-3 mb-8">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
                   {project.badges.map((badge, badgeIndex) => (
-                    <span key={badgeIndex} className={`px-4 py-2 text-sm font-medium tracking-wide border ${getBadgeColor(badge)}`}>
+                    <span key={badgeIndex} className={`px-3 sm:px-4 py-1 sm:py-2 text-xs sm:text-sm font-medium tracking-wide border ${getBadgeColor(badge)}`}>
                       {badge}
                     </span>
                   ))}
                 </div>
               </div>
-              <div className="bg-white dark:bg-slate-900 p-8 flex justify-end gap-6 border-t border-slate-200 dark:border-slate-700">
+              <div className="bg-white dark:bg-slate-900 p-4 sm:p-6 md:p-8 flex justify-end gap-4 sm:gap-6 border-t border-slate-200 dark:border-slate-700">
                 {project.githubUrl && (
                   <a
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-medium tracking-wide"
+                    className="inline-flex items-center gap-2 sm:gap-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-medium tracking-wide text-sm sm:text-base"
                   >
-                    <Github className="w-5 h-5" /> GitHub
+                    <Github className="w-4 h-4 sm:w-5 sm:h-5" /> GitHub
                   </a>
                 )}
                 {project.liveUrl && (
@@ -169,9 +220,9 @@ const ProjectsSection = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-medium tracking-wide"
+                    className="inline-flex items-center gap-2 sm:gap-3 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-medium tracking-wide text-sm sm:text-base"
                   >
-                    <ExternalLink className="w-5 h-5" /> Live Demo
+                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" /> Live Demo
                   </a>
                 )}
               </div>

@@ -16,7 +16,6 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
           animations: ['framer-motion'],
           icons: ['lucide-react']
         },
@@ -34,7 +33,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 1000
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'lucide-react']
+    include: ['react', 'react-dom', 'framer-motion', 'lucide-react']
   },
   css: {
     postcss: './postcss.config.js'
