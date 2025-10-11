@@ -256,4 +256,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Built with ❤️ by Mohamed Ali using React and modern web technologies.
 #   U p d a t e d   1 0 / 1 1 / 2 0 2 5   2 1 : 4 2 : 3 3  
+ #   E n v i r o n m e n t   v a r i a b l e   a d d e d   1 0 / 1 1 / 2 0 2 5   2 2 : 0 7 : 0 1  
  
