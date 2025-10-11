@@ -1,41 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Globe, MessageCircle, Building, CheckCircle, XCircle } from 'lucide-react'
-import { useForm } from '../../hooks/useForm'
+import { Mail, Phone, MapPin, Github, Linkedin, Globe, MessageCircle, Building } from 'lucide-react'
 
 const ContactSection = () => {
-  const [notification, setNotification] = useState(null)
-  const { values, errors, isSubmitting, handleChange, handleSubmit, resetForm } = useForm({
-    name: '',
-    email: '',
-    message: ''
-  })
-
-  const showNotification = (message, type = 'success') => {
-    setNotification({ message, type })
-    setTimeout(() => setNotification(null), 5000)
-  }
-
-  const onSubmit = async (formData) => {
-    try {
-      console.log('📧 Contact form submission received:')
-      console.log('📧 Name:', formData.name)
-      console.log('📧 Email:', formData.email)
-      console.log('📧 Message:', formData.message)
-      console.log('📧 Timestamp:', new Date().toISOString())
-      
-      // Show honest message - form works but email sending is not configured
-      showNotification('Form submitted successfully! However, email sending is not configured. Please email me directly at mohamedali200bu@gmail.com', 'error')
-      resetForm()
-      
-    } catch (error) {
-      console.error('❌ Form submission error:', error)
-      
-      // Show error message
-      showNotification('Sorry, there was an error. Please email me directly at mohamedali200bu@gmail.com', 'error')
-    }
-  }
-
   const contactInfo = [
     {
       icon: Mail,
@@ -49,346 +16,186 @@ const ContactSection = () => {
       label: 'Phone',
       value: '+20 1014800766',
       link: 'tel:+201014800766',
-      description: 'Call or WhatsApp available'
+      description: 'Call me for urgent matters'
     },
     {
       icon: MapPin,
       label: 'Location',
-      value: 'Shorouk City, Cairo, Egypt',
-      link: 'https://maps.google.com/?q=Shorouk+City+Cairo+Egypt',
-      description: 'Based in Egypt, open to remote work'
-    }
-  ]
-
-  const socialLinks = [
+      value: 'Cairo, Egypt',
+      link: 'https://maps.google.com/?q=Cairo,Egypt',
+      description: 'Based in Cairo, Egypt'
+    },
     {
-      name: 'GitHub',
-      url: 'https://github.com/Mohamedali1111',
       icon: Github,
-      description: 'View my code and projects'
+      label: 'GitHub',
+      value: 'github.com/Mohamedali1111',
+      link: 'https://github.com/Mohamedali1111',
+      description: 'View my code repositories'
     },
     {
-      name: 'LinkedIn',
-      url: 'https://www.linkedin.com/in/mohamed-ali-38b6a92b1/',
       icon: Linkedin,
-      description: 'Connect professionally'
+      label: 'LinkedIn',
+      value: 'linkedin.com/in/mohamed-ali',
+      link: 'https://linkedin.com/in/mohamed-ali',
+      description: 'Connect with me professionally'
     },
     {
-      name: 'Portfolio',
-      url: '#home',
       icon: Globe,
-      description: 'View my portfolio'
+      label: 'Website',
+      value: 'mohamed-ali-portfolio.vercel.app',
+      link: 'https://mohamed-ali-portfolio.vercel.app',
+      description: 'Visit my portfolio website'
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.6 }
-    }
-  }
+  const availability = [
+    { day: 'Monday - Friday', time: '9:00 AM - 6:00 PM', status: 'Available' },
+    { day: 'Saturday', time: '10:00 AM - 4:00 PM', status: 'Available' },
+    { day: 'Sunday', time: 'Closed', status: 'Unavailable' }
+  ]
 
   return (
-    <section id="contact" className="py-16 sm:py-20 md:py-24 px-4 sm:px-6 lg:px-8 bg-slate-50 dark:bg-slate-900">
-      {/* Notification */}
-      {notification && (
-        <motion.div
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -50 }}
-          className={`fixed top-20 right-4 z-50 max-w-sm p-4 rounded-lg shadow-lg flex items-center gap-3 ${
-            notification.type === 'success' 
-              ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800' 
-              : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
-          }`}
-        >
-          {notification.type === 'success' ? (
-            <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0" />
-          ) : (
-            <XCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0" />
-          )}
-          <p className={`text-sm font-medium ${
-            notification.type === 'success' 
-              ? 'text-green-800 dark:text-green-200' 
-              : 'text-red-800 dark:text-red-200'
-          }`}>
-            {notification.message}
-          </p>
-          <button
-            onClick={() => setNotification(null)}
-            className="ml-auto text-slate-400 hover:text-slate-600 dark:hover:text-slate-300"
-          >
-            <XCircle className="w-4 h-4" />
-          </button>
-        </motion.div>
-      )}
-
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          className="text-center mb-12 sm:mb-16 md:mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8 tracking-tight">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
             Let's Connect
           </h2>
-          <p className="text-lg sm:text-xl text-slate-500 dark:text-slate-500 max-w-3xl mx-auto leading-relaxed font-light px-4">
-            Ready to discuss your next project or explore collaboration opportunities? 
-            I'm always interested in connecting with fellow developers, potential clients, and innovative teams.
+          <p className="text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
+            Ready to discuss your next project? I'm always excited to work on new challenges and bring ideas to life.
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
-        >
-          {/* Main Content Grid */}
-          <div className="grid lg:grid-cols-3 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16">
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+              Get In Touch
+            </h3>
             
-            {/* Contact Form - Takes 2 columns */}
-            <motion.div variants={itemVariants} className="lg:col-span-2">
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 md:p-12 h-full">
-                <div className="flex items-center gap-4 sm:gap-6 mb-8 sm:mb-12">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-slate-900 dark:bg-white flex items-center justify-center">
-                    <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-white dark:text-slate-900" />
+            <div className="space-y-6">
+              {contactInfo.map((item, index) => (
+                <motion.a
+                  key={index}
+                  href={item.link}
+                  target={item.link.startsWith('http') ? '_blank' : '_self'}
+                  rel={item.link.startsWith('http') ? 'noopener noreferrer' : ''}
+                  className="flex items-start space-x-4 p-4 rounded-lg hover:bg-white dark:hover:bg-slate-800 transition-colors duration-200 group"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 bg-slate-200 dark:bg-slate-700 rounded-lg flex items-center justify-center group-hover:bg-slate-300 dark:group-hover:bg-slate-600 transition-colors duration-200">
+                    <item.icon className="w-6 h-6 text-slate-600 dark:text-slate-300" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-wide">Send Message</h3>
-                </div>
-
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 sm:space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2 sm:mb-3 tracking-wide uppercase">
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        value={values.name}
-                        onChange={handleChange}
-                        required
-                        className={`w-full px-4 sm:px-6 py-3 sm:py-4 border focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors duration-200 ${
-                          errors.name 
-                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
-                            : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800'
-                        } text-slate-900 dark:text-white font-light text-sm sm:text-base`}
-                        placeholder="Your full name"
-                      />
-                      {errors.name && (
-                        <p className="mt-1 sm:mt-2 text-sm text-red-600 dark:text-red-400">{errors.name}</p>
-                      )}
-                    </div>
-
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2 sm:mb-3 tracking-wide uppercase">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                        required
-                        className={`w-full px-4 sm:px-6 py-3 sm:py-4 border focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors duration-200 ${
-                          errors.email 
-                            ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
-                            : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800'
-                        } text-slate-900 dark:text-white font-light text-sm sm:text-base`}
-                        placeholder="your.email@example.com"
-                      />
-                      {errors.email && (
-                        <p className="mt-1 sm:mt-2 text-sm text-red-600 dark:text-red-400">{errors.email}</p>
-                      )}
-                    </div>
+                  <div className="flex-1">
+                    <h4 className="font-semibold text-slate-900 dark:text-white mb-1">
+                      {item.label}
+                    </h4>
+                    <p className="text-slate-600 dark:text-slate-300 font-medium mb-1">
+                      {item.value}
+                    </p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                      {item.description}
+                    </p>
                   </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-slate-600 dark:text-slate-400 mb-2 sm:mb-3 tracking-wide uppercase">
-                      Message *
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={values.message}
-                      onChange={handleChange}
-                      required
-                      rows={5}
-                      className={`w-full px-4 sm:px-6 py-3 sm:py-4 border focus:ring-2 focus:ring-slate-900 dark:focus:ring-white focus:border-transparent transition-colors duration-200 ${
-                        errors.message 
-                          ? 'border-red-500 bg-red-50 dark:bg-red-900/20' 
-                          : 'border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800'
-                      } text-slate-900 dark:text-white resize-vertical font-light text-sm sm:text-base`}
-                      placeholder="Tell me about your project, opportunity, or just say hello!"
-                    />
-                    {errors.message && (
-                      <p className="mt-1 sm:mt-2 text-sm text-red-600 dark:text-red-400">{errors.message}</p>
-                    )}
-                  </div>
-
-                  <div className="flex justify-end">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-medium py-3 sm:py-4 px-8 sm:px-12 transition-all duration-300 flex items-center justify-center gap-2 sm:gap-3 disabled:opacity-50 disabled:cursor-not-allowed tracking-wide uppercase text-xs sm:text-sm"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white dark:border-slate-900 border-t-transparent rounded-full animate-spin"></div>
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                          Send Message
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </motion.div>
-
-            {/* Contact Information - Takes 1 column */}
-            <motion.div variants={itemVariants} className="space-y-6 sm:space-y-8">
-              {/* Contact Details */}
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
-                <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-900 dark:bg-white flex items-center justify-center">
-                    <Building className="w-4 h-4 sm:w-5 sm:h-5 text-white dark:text-slate-900" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-wide">Contact Info</h3>
-                </div>
-
-                <div className="space-y-4 sm:space-y-6">
-                  {contactInfo.map((info, index) => {
-                    const Icon = info.icon
-                    return (
-                      <div key={index} className="flex items-start gap-3 sm:gap-4">
-                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-slate-900 dark:bg-white flex items-center justify-center flex-shrink-0 mt-1">
-                          <Icon className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-slate-900" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-slate-900 dark:text-white mb-1 tracking-wide text-xs sm:text-sm">
-                            {info.label}
-                          </h4>
-                          <a
-                            href={info.link}
-                            target={info.link.startsWith('http') ? '_blank' : undefined}
-                            rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            className="text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors duration-200 font-light text-xs sm:text-sm break-all"
-                          >
-                            {info.value}
-                          </a>
-                          <p className="text-xs text-slate-500 dark:text-slate-500 mt-1 font-light">
-                            {info.description}
-                          </p>
-                        </div>
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-
-              {/* Social Links */}
-              <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8">
-                <div className="flex items-center gap-3 sm:gap-4 mb-6 sm:mb-8">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-900 dark:bg-white flex items-center justify-center">
-                    <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-white dark:text-slate-900" />
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white tracking-wide">Connect</h3>
-                </div>
-
-                <div className="space-y-3 sm:space-y-4">
-                  {socialLinks.map((social, index) => {
-                    const Icon = social.icon
-                    return (
-                      <a
-                        key={index}
-                        href={social.url}
-                        target={social.url.startsWith('http') ? '_blank' : undefined}
-                        rel={social.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                        className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-300 group"
-                      >
-                        <div className="w-6 h-6 sm:w-8 sm:h-8 bg-slate-900 dark:bg-white flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                          <Icon className="w-3 h-3 sm:w-4 sm:h-4 text-white dark:text-slate-900" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-semibold text-slate-900 dark:text-white group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors duration-200 tracking-wide text-xs sm:text-sm">
-                            {social.name}
-                          </h4>
-                          <p className="text-xs text-slate-500 dark:text-slate-500 font-light">
-                            {social.description}
-                          </p>
-                        </div>
-                      </a>
-                    )
-                  })}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Availability Section */}
-          <motion.div variants={itemVariants} className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 md:p-12">
-            <div className="text-center max-w-4xl mx-auto">
-              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 tracking-wide">
-                Let's Work Together
-              </h3>
-              <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 mb-6 sm:mb-8 font-light">
-                I'm currently available for:
-              </p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
-                <div className="text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                    <Building className="w-6 h-6 sm:w-8 sm:h-8 text-white dark:text-slate-900" />
-                  </div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white mb-1 sm:mb-2 tracking-wide text-sm sm:text-base">Full-time Positions</h4>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-light">Software Engineering roles</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                    <Globe className="w-6 h-6 sm:w-8 sm:h-8 text-white dark:text-slate-900" />
-                  </div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white mb-1 sm:mb-2 tracking-wide text-sm sm:text-base">Freelance Projects</h4>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-light">Web development work</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                    <Github className="w-6 h-6 sm:w-8 sm:h-8 text-white dark:text-slate-900" />
-                  </div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white mb-1 sm:mb-2 tracking-wide text-sm sm:text-base">Open Source</h4>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-light">Contributions & collaborations</p>
-                </div>
-                <div className="text-center">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-slate-900 dark:bg-white flex items-center justify-center mx-auto mb-3 sm:mb-4">
-                    <MessageCircle className="w-6 h-6 sm:w-8 sm:h-8 text-white dark:text-slate-900" />
-                  </div>
-                  <h4 className="font-semibold text-slate-900 dark:text-white mb-1 sm:mb-2 tracking-wide text-sm sm:text-base">Consulting</h4>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-500 font-light">Technical guidance & mentorship</p>
-                </div>
-              </div>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
+
+          {/* Availability & Quick Actions */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+              Availability
+            </h3>
+            
+            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 mb-8">
+              <div className="space-y-4">
+                {availability.map((slot, index) => (
+                  <div key={index} className="flex items-center justify-between py-2">
+                    <div>
+                      <p className="font-medium text-slate-900 dark:text-white">
+                        {slot.day}
+                      </p>
+                      <p className="text-sm text-slate-600 dark:text-slate-300">
+                        {slot.time}
+                      </p>
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      slot.status === 'Available' 
+                        ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                        : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                    }`}>
+                      {slot.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="space-y-4">
+              <motion.a
+                href="mailto:mohamedali200bu@gmail.com"
+                className="flex items-center justify-center w-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 py-4 px-6 rounded-lg font-semibold hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Mail className="w-5 h-5 mr-2" />
+                Send Email
+              </motion.a>
+              
+              <motion.a
+                href="https://github.com/Mohamedali1111"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center w-full bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-white py-4 px-6 rounded-lg font-semibold hover:bg-slate-300 dark:hover:bg-slate-600 transition-colors duration-200"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Github className="w-5 h-5 mr-2" />
+                View GitHub
+              </motion.a>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Footer Message */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <div className="bg-slate-100 dark:bg-slate-800 rounded-xl p-8">
+            <MessageCircle className="w-12 h-12 text-slate-600 dark:text-slate-300 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold text-slate-900 dark:text-white mb-2">
+              Let's Build Something Amazing Together
+            </h3>
+            <p className="text-slate-600 dark:text-slate-300 max-w-2xl mx-auto">
+              I'm always excited to work on new projects and collaborate with passionate people. 
+              Whether you have a specific project in mind or just want to chat about technology, 
+              I'd love to hear from you!
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
